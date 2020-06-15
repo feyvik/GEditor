@@ -1,24 +1,60 @@
 /* eslint-disable no-unused-vars */
-function signUpWithEmailAndPassword(email, password, fullname) {}
+function signUpWithEmailAndPassword(e) {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  console.log(email, password);
+  if (email.length < 4) {
+    const erroremail = document.getElementById("error-email");
+    erroremail.innerHTML = "Please enter an email address..";
+    return;
+  }
+  if (password.length < 4) {
+    const errorpassword = document.getElementById("error-password");
+    errorpassword.innerHTML = "Please enter a password.";
+    return;
+  }
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(function (resp) {
+      window.location.replace("./index.html");
+    })
+    .catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode == "auth/weak-password") {
+        const errormessage = errorCode.message;
+        let errorpassword = document.getElementById("error");
+        errorpassword.innerHTML = `
+      ${errormessage}
+      `;
+        errorpassword.style.display = "block";
+        setTimeout(() => {
+          errorpassword.style.display = "none";
+        }, 3000);
+      }
+      const errormessage = error.message;
+      let erroremail = document.getElementById("error");
+      erroremail.innerHTML = `
+      ${errormessage}
+      `;
+      erroremail.style.display = "block";
+      setTimeout(() => {
+        erroremail.style.display = "none";
+      }, 3000);
+    });
+}
 
 function signInWithEmailAndPassword(email, password) {}
 
 function authenticateWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  // firebase.auth().signInWithPopup(provider);
   firebase
     .auth()
     .signInWithPopup(provider)
     .then(function (result) {
-      const userDetails = {
-        token: result.credential.accessToken,
-        user: result.user.displayName,
-        photo: result.user.photoURL,
-        uid: result.user.uid,
-      };
-      console.log(userDetails);
-      window.location.replace("./profile.html");
-      console.log(result.user);
+      window.location.replace("./index.html");
     })
     .catch(function (error) {
       const errorCode = error.code;
