@@ -22,26 +22,39 @@
       <div class="signup-form">
         <h3>Register to access your Dashboard</h3>
         <form>
+          <div class="FullName">
+            <input type="text" id="fullName" placeholder="FullName" required />
+            <p></p>
+          </div>
           <div class="email">
-            <input type="email" placeholder="example@gmail.com" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Doe@gmail.com"
+              required
+            />
+            <p id="error-email"></p>
           </div>
           <div class="password">
-            <input type="password" name="" id="" placeholder="Password" />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <p id="error-password"></p>
           </div>
           <div class="sign-up">
-            <button class="btn-color">Sign up</button>
+            <button class="btn-color" id="signup">Sign up</button>
             <p>Dont' have an account?<a href="login.html">Login</a></p>
           </div>
-          <div class="google">
-            <button
-              class="btn-google"
-              id="sign-in"
-            >
-              <i class="fab fa-google-plus-g"></i>
-              <span>Sign up with Google</span>
-            </button>
-          </div>
         </form>
+        <div class="google">
+          <button class="btn-google" id="sign-in">
+            <i class="fab fa-google-plus-g"></i>
+            <span>Sign up with Google</span>
+          </button>
+        </div>
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
