@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars */
-function signUpWithEmailAndPassword (email, password, fullname) {
+function signUpWithEmailAndPassword(email, password, fullname) {}
 
-}
+function signInWithEmailAndPassword(email, password) {}
 
-function signInWithEmailAndPassword (email, password) {
-
-}
-
-function authenticateWithGoogle () {
-
+function authenticateWithGoogle() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider);
 }
