@@ -12,28 +12,33 @@ a {
   text-decoration: none;
 }
 input {
+  font-size: 15px;
   width: 100%;
-  margin-bottom: 10px;
-  height: 30px;
+  height: 40px;
   border: none;
-  border-bottom: 2px solid #5561ad;
+  padding-left: 10px;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(148, 148, 148, 0.19),
+    0 6px 20px 0 rgba(165, 165, 165, 0.19);
 }
 .btn-google {
-  border-radius: 40px;
-  background: #d73c28;
-  padding: 10px 50px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 10px 20px;
+  color: #7f7f7f;
 }
 button {
   cursor: pointer;
   color: #fff;
   border: none;
   font-size: 18px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(148, 148, 148, 0.19),
+    0 6px 20px 0 rgba(165, 165, 165, 0.19);
 }
 .btn-color {
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 10px 50px;
-  background: linear-gradient(to right, #20996e, #5561ad);
+  background: #6337e4;
 }
 h1 {
   font-size: 40px;

@@ -1,72 +1,67 @@
 /* eslint-disable no-unused-vars */
-function signUpWithEmailAndPassword(e) {
-  e.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+
+// Declare Variables
+const fullname = document.getElementById("fullname");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const errorMessage = document.getElementById("error");
+const spanLoading = document.getElementById("spanLoading");
+const spanSignUp = document.getElementById("spanSignUp");
+const signUpForm = document.getElementById("signUpForm");
+const signInGoogleButton = document.getElementById("sign-in");
+
+// sign up with email and password function
+function signUpWithEmailAndPassword(email, password, fullname) {
+
+  errorMessage.innerText = "";
+  spanSignUp.style.display = "none";
+  spanLoading.style.display = "block";
+
   if (email.length < 4) {
     const erroremail = document.getElementById("error");
     erroremail.innerHTML = "Please enter an email address..";
     return;
   }
+
   if (password.length < 4) {
     const errorpassword = document.getElementById("error");
     errorpassword.innerHTML = "Please enter a password.";
     return;
   }
 
-  const load1 = document.getElementById("spanLoading");
-  load1.style.display = "block";
-  document.getElementById("spanSignUp").style.display = "none";
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(function (resp) {
-      const pen = document.getElementById("spanLoading");
-      pen.style.display = "none";
-      document.getElementById("spanSignUp").style.display = "block";
-      window.location.replace("./index.html");
+      window.location.href = "../index.html";
     })
     .catch(function (error) {
-      const load2 = document.getElementById("spanLoading");
-      load2.style.display = "none";
-      document.getElementById("spanSignUp").style.display = "block";
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode == "auth/weak-password") {
-        const errormessage = errorCode.message;
-        let errorpassword = document.getElementById("error");
-        errorpassword.innerHTML = `
-      ${errormessage}
-      `;
-        errorpassword.style.display = "block";
-        setTimeout(() => {
-          errorpassword.style.display = "none";
-        }, 3000);
+
+      spanLoading.style.display = "none";
+      spanSignUp.style.display = "block";
+
+      if (error.code == "auth/weak-password") {
+        errorMessage.innerText = error.message;
       }
-      const load3 = document.getElementById("spanLoading");
-      load3.style.display = "none";
-      document.getElementById("spanSignUp").style.display = "block";
-      const errormessage = error.message;
-      let erroremail = document.getElementById("error");
-      erroremail.innerHTML = `
-      ${errormessage}
-      `;
-      erroremail.style.display = "block";
-      setTimeout(() => {
-        erroremail.style.display = "none";
-      }, 3000);
+
+      if (error.message) {
+        errorMessage.innerText = error.message;
+      }
+      console.log(error.message);
     });
 }
 
+// sign in with email and password function
 function signInWithEmailAndPassword(email, password) {}
 
+// Googl auth login
 function authenticateWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase
     .auth()
     .signInWithPopup(provider)
     .then(function (result) {
-      window.location.replace("./index.html");
+      window.location.href = "../index.html";
     })
     .catch(function (error) {
       const errorCode = error.code;
@@ -77,7 +72,9 @@ function authenticateWithGoogle() {
     });
 }
 
-const signUpButtonElement = document.getElementById("signup");
-signUpButtonElement.addEventListener("click", signUpWithEmailAndPassword);
-const signInGoogleButton = document.getElementById("sign-in");
 signInGoogleButton.addEventListener("click", authenticateWithGoogle);
+
+signUpForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  signUpWithEmailAndPassword(email.value, password.value, fullname.value);
+});
