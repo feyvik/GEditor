@@ -16,20 +16,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
   spanSignUp.style.display = "none";
   spanLoading.style.display = "block";
 
-  if (email.length < 4) {
-    const erroremail = document.getElementById("error");
-    erroremail.innerHTML = "Please enter an email address..";
-    return;
-  }
-
-  if (password.length < 4) {
-    const errorpassword = document.getElementById("error");
-    errorpassword.innerHTML = "Please enter a password.";
-    spanSignUp.style.display = "block";
-    spanLoading.style.display = "none";
-
-    return;
-  }
+  validateemail(email);
 
   firebase
     .auth()
@@ -74,6 +61,22 @@ function authenticateWithGoogle() {
 }
 
 signInGoogleButton.addEventListener("click", authenticateWithGoogle);
+
+function validateemail(email) {
+  const atposition = email.indexOf("@");
+  const dotposition = email.lastIndexOf(".");
+  if (
+    atposition < 1 ||
+    dotposition < atposition + 2 ||
+    dotposition + 2 >= email.length
+  ) {
+    errorMessage.innerText = "Please enter a valid e - mail address ";
+    spanSignUp.style.display = "block";
+    spanLoading.style.display = "none";
+
+    return;
+  }
+}
 
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
