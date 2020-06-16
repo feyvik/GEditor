@@ -12,7 +12,6 @@ const signInGoogleButton = document.getElementById("sign-in");
 
 // sign up with email and password function
 function signUpWithEmailAndPassword(email, password, fullname) {
-
   errorMessage.innerText = "";
   spanSignUp.style.display = "none";
   spanLoading.style.display = "block";
@@ -26,6 +25,9 @@ function signUpWithEmailAndPassword(email, password, fullname) {
   if (password.length < 4) {
     const errorpassword = document.getElementById("error");
     errorpassword.innerHTML = "Please enter a password.";
+    spanSignUp.style.display = "block";
+    spanLoading.style.display = "none";
+
     return;
   }
 
@@ -36,7 +38,6 @@ function signUpWithEmailAndPassword(email, password, fullname) {
       window.location.href = "../index.html";
     })
     .catch(function (error) {
-
       spanLoading.style.display = "none";
       spanSignUp.style.display = "block";
 
