@@ -17,6 +17,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
   spanLoading.style.display = "block";
 
   validateemail(email);
+  validatePassword(password);
 
   firebase
     .auth()
