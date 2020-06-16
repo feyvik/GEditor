@@ -3,24 +3,33 @@ function signUpWithEmailAndPassword(e) {
   e.preventDefault();
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  console.log(email, password);
   if (email.length < 4) {
-    const erroremail = document.getElementById("error-email");
+    const erroremail = document.getElementById("error");
     erroremail.innerHTML = "Please enter an email address..";
     return;
   }
   if (password.length < 4) {
-    const errorpassword = document.getElementById("error-password");
+    const errorpassword = document.getElementById("error");
     errorpassword.innerHTML = "Please enter a password.";
     return;
   }
+
+  const load1 = document.getElementById("spanLoading");
+  load1.style.display = "block";
+  document.getElementById("spanSignUp").style.display = "none";
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(function (resp) {
+      const pen = document.getElementById("spanLoading");
+      pen.style.display = "none";
+      document.getElementById("spanSignUp").style.display = "block";
       window.location.replace("./index.html");
     })
     .catch(function (error) {
+      const load2 = document.getElementById("spanLoading");
+      load2.style.display = "none";
+      document.getElementById("spanSignUp").style.display = "block";
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode == "auth/weak-password") {
@@ -34,6 +43,9 @@ function signUpWithEmailAndPassword(e) {
           errorpassword.style.display = "none";
         }, 3000);
       }
+      const load3 = document.getElementById("spanLoading");
+      load3.style.display = "none";
+      document.getElementById("spanSignUp").style.display = "block";
       const errormessage = error.message;
       let erroremail = document.getElementById("error");
       erroremail.innerHTML = `
