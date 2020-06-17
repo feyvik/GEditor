@@ -16,10 +16,6 @@ function signUpWithEmailAndPassword(email, password, fullname) {
   spanSignUp.style.display = "none";
   spanLoading.style.display = "block";
 
-  if (email) {
-    validateEmail();
-  }
-
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -65,6 +61,7 @@ function authenticateWithGoogle() {
 signInGoogleButton.addEventListener("click", authenticateWithGoogle);
 
 function validateEmail() {
+  errorMessage.innerText = "";
   var x = email.value;
   var atposition = x.indexOf("@");
   var dotposition = x.lastIndexOf(".");
@@ -80,9 +77,10 @@ function validateEmail() {
     erroremail.innerHTML = "Please enter a valid e-mail address";
     return;
   }
+  signUpWithEmailAndPassword(email.value, password.value, fullname.value);
 }
 
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  signUpWithEmailAndPassword(email.value, password.value, fullname.value);
+  validateEmail();
 });
