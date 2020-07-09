@@ -16,6 +16,21 @@ function signUpWithEmailAndPassword(email, password, fullname) {
   spanSignUp.style.display = "none";
   spanLoading.style.display = "block";
 
+  if (!validateEmail(email)) {
+    errorMessage.innerText = "Please enter a valid e-mail address";
+    spanLoading.style.display = "none";
+    spanSignUp.style.display = "block";
+    return true;
+  }
+
+  if (!validatePwd(password)) {
+    errorMessage.innerText =
+      " Password must contain at least lowercase letter, one number, a special character and one uppercase letter";
+    spanLoading.style.display = "none";
+    spanSignUp.style.display = "block";
+    return true;
+  }
+
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -40,7 +55,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
 // sign in with email and password function
 function signInWithEmailAndPassword(email, password) {}
 
-// Googl auth login
+// Google auth login
 function authenticateWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase
@@ -60,27 +75,17 @@ function authenticateWithGoogle() {
 
 signInGoogleButton.addEventListener("click", authenticateWithGoogle);
 
-function validateEmail() {
-  errorMessage.innerText = "";
-  var x = email.value;
-  var atposition = x.indexOf("@");
-  var dotposition = x.lastIndexOf(".");
-  if (
-    atposition < 1 ||
-    dotposition < atposition + 2 ||
-    dotposition + 2 >= x.length
-  ) {
-    spanLoading.style.display = "none";
-    spanSignUp.style.display = "block";
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
-    const erroremail = document.getElementById("error");
-    erroremail.innerHTML = "Please enter a valid e-mail address";
-    return;
-  }
-  signUpWithEmailAndPassword(email.value, password.value, fullname.value);
+function validatePwd(password) {
+  var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  return re.test(password);
 }
 
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  validateEmail();
+  signUpWithEmailAndPassword(email.value, password.value, fullname.value);
 });
