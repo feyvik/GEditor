@@ -10,6 +10,8 @@ const spanSignUp = document.getElementById("spanSignUp");
 const signUpForm = document.getElementById("signUpForm");
 const signInGoogleButton = document.getElementById("sign-in");
 
+
+
 // sign up with email and password function
 function signUpWithEmailAndPassword(email, password, fullname) {
   errorMessage.innerText = "";
@@ -20,7 +22,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
     errorMessage.innerText = "Please enter a valid e-mail address";
     spanLoading.style.display = "none";
     spanSignUp.style.display = "block";
-    return true;
+    return;
   }
 
   if (!validatePwd(password)) {
@@ -28,7 +30,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
       " Password must contain at least lowercase letter, one number, a special character and one uppercase letter";
     spanLoading.style.display = "none";
     spanSignUp.style.display = "block";
-    return true;
+    return;
   }
 
   firebase
@@ -53,7 +55,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
 }
 
 // sign in with email and password function
-function signInWithEmailAndPassword(email, password) {}
+function signInWithEmailAndPassword(email, password) { }
 
 // Google auth login
 function authenticateWithGoogle() {
