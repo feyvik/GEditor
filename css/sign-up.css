@@ -1,0 +1,50 @@
+.signup-page {
+  justify-content: center;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  background-color: #f5f6fa;
+}
+.signup-form {
+  text-align: center;
+  width: 50%;
+  color: #8d9293;
+  font-weight: bold;
+}
+.signup-form h3 {
+  font-size: 20px;
+}
+form {
+  width: 60%;
+  margin-bottom: 30px;
+  margin: auto;
+}
+#spanLoading {
+  display: none;
+}
+#error {
+  font-size: 12px;
+  color: red;
+  text-align: justify;
+}
+#errorPwd {
+  font-size: 12px;
+  color: red;
+  text-align: justify;
+}
+.google {
+  margin-top: 20px;
+}
+.google span {
+  font-size: 16px;
+  margin-left: 10px;
+}
+.google button img {
+  margin-bottom: -4px;
+}
+.sign-up {
+  margin-top: 28px;
+}
+.sign-up p {
+  margin-top: 10px;
+}

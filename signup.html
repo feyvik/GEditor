@@ -1,23 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
-  <script src="js/init-firebase.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/sign-up.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="signup-page">
+      <div class="signup-form">
+        <h3>Register to access your Dashboard</h3>
+        <form id="signUpForm">
+          <p id="error"></p>
+          <p id="errorPwd"></p>
+          <div class="Fullname">
+            <input type="text" id="fullname" placeholder="Full Name" required />
+          </div>
+          <div class="email">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+          <div class="password">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="sign-up">
+            <button class="btn-color" id="signup" type="submit">
+              <span id="spanSignUp">Sign up</span>
+              <span id="spanLoading">Loading...</span>
+            </button>
+          </div>
+        </form>
+        <p>Dont' have an account? <a href="login.html">Login</a></p>
+        <div class="google">
+          <button class="btn-google" id="sign-in">
+            <img src="image/Google.png" width="24" alt="" />
+            <span>Sign up with Google</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="js/init-firebase.js"></script>
+
+    <script src="js/auth.js"></script>
+  </body>
 </html>
