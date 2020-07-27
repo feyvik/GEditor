@@ -12,6 +12,8 @@ const signUpForm = document.getElementById('signUpForm');
 const signInGoogleButton = document.getElementById('sign-in');
 
 const logInForm = document.getElementById('logInForm');
+const emailLogin = document.getElementById('email');
+const passwordLogin = document.getElementById('password');
 const spanLogin = document.getElementById('spanLogin');
 
 // sign up with email and password function
@@ -134,6 +136,6 @@ signUpForm.addEventListener('submit', (e) => {
 });
 
 logInForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-	signInWithEmailAndPassword(email.value, password.value, fullname.value);
-})
+	e.preventDefault();
+	signInWithEmailAndPassword(email.value, password.value);
+});
