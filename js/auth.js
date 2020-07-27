@@ -4,13 +4,15 @@
 const fullname = document.getElementById('fullname');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
+
 const errorMessage = document.getElementById('error');
 const spanLoading = document.getElementById('spanLoading');
 const spanSignUp = document.getElementById('spanSignUp');
 const signUpForm = document.getElementById('signUpForm');
 const signInGoogleButton = document.getElementById('sign-in');
 
-
+const logInForm = document.getElementById('logInForm');
+const spanLogin = document.getElementById('spanLogin');
 
 // sign up with email and password function
 function signUpWithEmailAndPassword(email, password, fullname) {
@@ -55,7 +57,46 @@ function signUpWithEmailAndPassword(email, password, fullname) {
 }
 
 // sign in with email and password function
-function signInWithEmailAndPassword(email, password) { }
+function signInWithEmailAndPassword(email, password) {
+	errorMessage.innerText = '';
+	spanLogin.style.display = 'none';
+	spanLoading.style.display = 'block';
+
+	if (!validateEmail(email)) {
+		errorMessage.innerText = 'Please enter a valid e-mail address';
+		spanLoading.style.display = 'none';
+		spanLogin.style.display = 'block';
+		return;
+	}
+
+	if (!validatePwd(password)) {
+		errorMessage.innerText =
+			' Password must contain at least lowercase letter, one number, a special character and one uppercase letter';
+		spanLoading.style.display = 'none';
+		spanLogin.style.display = 'block';
+		return;
+	}
+
+	firebase
+		.auth()
+		.createUserWithEmailAndPassword(email, password)
+		.then(function (resp) {
+			window.location.href = '../index.html';
+		})
+		.catch(function (error) {
+			spanLoading.style.display = 'none';
+			spanLogin.style.display = 'block';
+
+			if (error.code == 'auth/weak-password') {
+				errorMessage.innerText = error.message;
+			}
+
+			if (error.message) {
+				errorMessage.innerText = error.message;
+			}
+			console.log(error.message);
+		});
+ }
 
 // Google auth login
 function authenticateWithGoogle() {
@@ -91,3 +132,8 @@ signUpForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	signUpWithEmailAndPassword(email.value, password.value, fullname.value);
 });
+
+logInForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+	signInWithEmailAndPassword(email.value, password.value, fullname.value);
+})
