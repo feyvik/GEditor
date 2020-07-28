@@ -10,10 +10,8 @@ const spanLoading = document.getElementById('spanLoading');
 const spanSignUp = document.getElementById('spanSignUp');
 const signUpForm = document.getElementById('signUpForm');
 const signInGoogleButton = document.getElementById('sign-in');
-
+console.log(signUpForm)
 const logInForm = document.getElementById('logInForm');
-const emailLogin = document.getElementById('email');
-const passwordLogin = document.getElementById('password');
 const spanLogin = document.getElementById('spanLogin');
 
 // sign up with email and password function
@@ -130,7 +128,10 @@ function validatePwd(password) {
 	return re.test(password);
 }
 
-signUpForm.addEventListener('submit', (e) => {
+// signUpForm.addEventListener('submit', (e) => {
+	
+// })
+spanLoading.addEventListener('submit', (e) => {
 	e.preventDefault();
 	signUpWithEmailAndPassword(email.value, password.value, fullname.value);
 });
