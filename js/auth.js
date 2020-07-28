@@ -14,7 +14,6 @@ const signInGoogleButton = document.getElementById('sign-in');
 const logInForm = document.getElementById('logInForm');
 const spanLogin = document.getElementById('spanLogin');
 
-console.log(signUpForm, logInForm)
 // sign up with email and password function
 function signUpWithEmailAndPassword(email, password, fullname) {
 	errorMessage.innerText = '';
@@ -80,7 +79,7 @@ function signInWithEmailAndPassword(email, password) {
 
 	firebase
 		.auth()
-		.createUserWithEmailAndPassword(email, password)
+		.signInWithEmailAndPassword(email, password)
 		.then(function (resp) {
 			window.location.href = '../index.html';
 		})
@@ -130,12 +129,18 @@ function validatePwd(password) {
 }
 
 
-// signUpForm.addEventListener('submit', (e) => {
-// 	e.preventDefault();
-// 	signUpWithEmailAndPassword(email.value, password.value, fullname.value);
-// });
+function checkNullValus() {
+	if (signUpForm === null) {
+		logInForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			signInWithEmailAndPassword(email.value, password.value);
+		});
+	} else {
+			signUpForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				signUpWithEmailAndPassword(email.value, password.value, fullname.value);
+			});
+		}
+}
 
-// logInForm.addEventListener('submit', (e) => {
-// 	e.preventDefault();
-// 	signInWithEmailAndPassword(email.value, password.value);
-// });
+checkNullValus();
