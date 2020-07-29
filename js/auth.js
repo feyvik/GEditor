@@ -96,10 +96,11 @@ function signInWithEmailAndPassword(email, password) {
 			}
 			console.log(error.message);
 		});
- }
+}
 
 // Google auth login
 function authenticateWithGoogle() {
+	// eslint-disable-next-line no-undef
 	const provider = new firebase.auth.GoogleAuthProvider();
 	// eslint-disable-next-line no-undef
 	firebase
@@ -124,6 +125,7 @@ function validateEmail(email) {
 	return re.test(String(email).toLowerCase());
 }
 
+
 function validatePwd(password) {
 	var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	return re.test(password);
@@ -137,11 +139,11 @@ function checkNullValus() {
 			signInWithEmailAndPassword(email.value, password.value);
 		});
 	} else {
-			signUpForm.addEventListener('submit', (e) => {
-				e.preventDefault();
-				signUpWithEmailAndPassword(email.value, password.value, fullname.value);
-			});
-		}
+		signUpForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			signUpWithEmailAndPassword(email.value, password.value, fullname.value);
+		});
+	}
 }
 
 
