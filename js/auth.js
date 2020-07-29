@@ -34,7 +34,7 @@ function signUpWithEmailAndPassword(email, password, fullname) {
 		spanSignUp.style.display = 'block';
 		return;
 	}
-
+	// eslint-disable-next-line no-undef
 	firebase
 		.auth()
 		.createUserWithEmailAndPassword(email, password)
@@ -76,7 +76,7 @@ function signInWithEmailAndPassword(email, password) {
 		spanLogin.style.display = 'block';
 		return;
 	}
-
+	// eslint-disable-next-line no-undef
 	firebase
 		.auth()
 		.signInWithEmailAndPassword(email, password)
@@ -101,6 +101,7 @@ function signInWithEmailAndPassword(email, password) {
 // Google auth login
 function authenticateWithGoogle() {
 	const provider = new firebase.auth.GoogleAuthProvider();
+	// eslint-disable-next-line no-undef
 	firebase
 		.auth()
 		.signInWithPopup(provider)
@@ -142,5 +143,6 @@ function checkNullValus() {
 			});
 		}
 }
+
 
 checkNullValus();
