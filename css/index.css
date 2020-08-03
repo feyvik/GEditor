@@ -21,3 +21,48 @@ input{
 a{
   color: black;
 }
+.documents{
+  padding-top: 100px;
+  height: 60vh;
+  display: flex;
+  margin: 0 100px 0 100px;
+  justify-content: space-around;
+}
+.doc-date{
+  width: 55%;
+  padding-left: 20px;
+}
+.doc-date-info p {
+  font-size: 16px;
+}
+p .fa-book{
+  margin-right: 20px;
+}
+.fa-users{
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.doc-info-status p{
+  font-size: 16px;
+}
+.doc-open-date p{
+  font-size: 16px;
+}
+.fa-ellipsis-v {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.creat-new-doc{
+  position: fixed;
+  text-align: right;
+  width: 100%;
+}
+.creat-new-doc button{
+  font-size: 18px;
+  width: 5%;
+  padding: 18px 4px;
+  border-radius: 100px;
+  margin-right: 20px;
+}

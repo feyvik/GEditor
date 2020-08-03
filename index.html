@@ -11,13 +11,14 @@
     crossorigin="anonymous"
   />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+  
 </head>
 <body>
   <nav class="navbar">
     <div class="nav-col-logo">
-      <a href="#">LOGO</a>
+      <a href="#"><i class="fa fa-book"></i> Edit</a>
     </div>
     <div class="nav-col-input">
       <form action="">
@@ -25,11 +26,34 @@
       </form>
     </div>
     <div class="nav-col-img">
-      <a href="#">Image</a>
+      <a href="#"><i class="fa fa-user"></i></a>
     </div>
   </nav>
 
+  <div class="documents">
+    <div class="doc-date">
+      <h4>Today</h4>
+      <div class="doc-date-info">
+        <p><i class="fa fa-book"></i> Design review for profile <i class="fa fa-users"></i></p>
+      </div>
+    </div>
+    <div class="doc-info">
+      <h4>Owned by anyone</h4>
+      <div class="doc-info-status">
+        <p>Favour Vivian Woka</p>
+      </div>
+    </div>
+    <div class="doc-open">
+      <h4>Last opened</h4>
+      <div class="doc-open-date">
+        <p>12:00pm <i class="fa fa-ellipsis-v"></i></p>
+      </div>
+    </div>
+  </div>
 
+  <div class="creat-new-doc">
+    <button class="btn-color" type="button">+</button>
+  </div>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
