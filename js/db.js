@@ -3,29 +3,29 @@ let userId = '';
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
+		console.log(userId);
+		getDocuments(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
 });
 
-function getDocuments() {
+function getDocuments(id) {
 	// eslint-disable-next-line no-undef
-	const doc =	firebase
+	const booksRef = firebase
 		.firestore()
-		.collection('doc')
-		// eslint-disable-next-line no-undef
-		.doc(userId)
-		.collection('documents');
-	console.log(doc);
-	
-	doc.onSnapshot(snap => {
-		snap.forEach(doc => {
-			var todo = doc.data();
-			console.log(todo);
-			// todo.id = doc.id;
-			// this.todos.push(todo);
+		.collection('books')
+		.doc(id);
+	booksRef
+		.get()
+		.then((snapshot) => {
+			const data = snapshot.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			console.log('All data in \'books\' collection', data); 
+			console.log(snapshot);
+			// [ { id: 'glMeZvPpTN1Ah31sKcnj', title: 'The Great Gatsby' } ]
 		});
-	});
 }
 
-getDocuments();
