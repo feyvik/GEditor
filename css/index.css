@@ -23,7 +23,7 @@ a{
 }
 .documents{
   padding-top: 100px;
-  height: 60vh;
+  height: 70vh;
   display: flex;
   margin: 0 100px 0 100px;
   justify-content: space-around;
@@ -62,7 +62,7 @@ p .fa-book{
 .creat-new-doc button{
   font-size: 18px;
   width: 5%;
-  padding: 18px 4px;
+  padding: 20px 4px;
   border-radius: 100px;
   margin-right: 20px;
 }
