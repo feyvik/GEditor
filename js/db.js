@@ -12,19 +12,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function getDocuments(id) {
 	// eslint-disable-next-line no-undef
-	const booksRef = firebase
-		.firestore()
-		.collection('books')
-		.doc(id);
-	booksRef
-		.get()
+	let db = firebase.firestore()
+		.collection('docs');
+	db.get()
 		.then((snapshot) => {
-			const data = snapshot.map((doc) => ({
+			const data = snapshot.docs.map((doc) => ({
 				id: doc.id,
 				...doc.data(),
 			}));
-			console.log('All data in \'books\' collection', data); 
-			console.log(snapshot);
+			console.log(data); 
 			// [ { id: 'glMeZvPpTN1Ah31sKcnj', title: 'The Great Gatsby' } ]
 		});
 }
