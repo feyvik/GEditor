@@ -36,3 +36,6 @@ h1 {
 h3 {
   font-size: 30px;
 }
+.fa-ellipsis-v{
+  cursor: pointer;
+}
