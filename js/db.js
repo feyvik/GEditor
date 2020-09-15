@@ -1,6 +1,7 @@
-
+const newDoc = document.getElementById('createNewDoc');
 let userId = '';
 const doc = document.getElementById('document');
+
 // eslint-disable-next-line no-undef
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
@@ -10,6 +11,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 	} else {
 		console.log(user + '' + 'logged out');
 	}
+});
+
+newDoc.addEventListener('click', e => {
+	e.preventDefault();
+	window.location.href = '../editor.html';
 });
 
 // function getFullName(user, fullname) {
@@ -44,34 +50,32 @@ function getDocuments(id) {
 			console.log(data);
 			for (let i = 0; i < data.length; i++) {
 				doc.innerHTML = `
-				<div class="doc-date">
-					<h4>Today</h4>
-					<div class="doc-date-info">
-						<p><i class="fa fa-book"></i> ${data[i].name} <i class="fa fa-users"></i></p>
+				<div class="documents" id="${data[i].userId}">
+					<div class="doc-date">
+						<h4>Today</h4>
+						<div class="doc-date-info">
+							<p><i class="fa fa-book"></i> ${data[i].name} <i class="fa fa-users"></i></p>
+						</div>
 					</div>
-				</div>
-				<div class="doc-info">
-					<h4>Owned by anyone</h4>
-					<div class="doc-info-status">
-						<p>${data[i].name}</p>
+					<div class="doc-info">
+						<h4>Owned by anyone</h4>
+						<div class="doc-info-status">
+							<p>${data[i].name}</p>
+						</div>
 					</div>
-				</div>
-				<div class="doc-open">
-					<h4>Last opened</h4>
-					<div class="doc-open-date">
-						<p>${data[i].updated} <i class="fa fa-ellipsis-v"></i></p>
-					</div>
-				</div>
+					<div class="doc-open">
+						<h4>Last opened</h4>
+						<div class="doc-open-date">
+							<p>${data[i].updated} <i class="fa fa-ellipsis-v"></i></p>
+						</div>
+					</div>   
+  			</div>
 				`;
-				formateData(data[i].updated);
+				console.log(data[i].updated);
 			}
 		});
 }
 
-function formateData(date) {
-	let dat = new Date(date);
-	console.log(dat);
-}
 
 function addDoc(id) {
 	// eslint-disable-next-line no-undef

@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -7,54 +7,51 @@
   border-bottom: 1px solid rgb(189, 189, 189);
   position: fixed;
 }
-.nav-col-input{
+.nav-col-input {
   width: 50%;
   text-align: center;
 }
-input{
+input {
   width: 100%;
   height: 28px;
   padding-left: 10px;
   border-radius: 4px;
   border: 1px solid rgb(189, 189, 189);
 }
-a{
+a {
   color: black;
 }
-.documents{
+.documents {
   padding-top: 100px;
   height: 70vh;
   display: flex;
   justify-content: space-around;
   margin: 0 100px 0 100px;
 }
-.doc-date{
+.doc-date {
   width: 50%;
-  padding-left: 20px;
 }
-.doc-info{
+.doc-info {
   width: 20%;
-  padding-left: 20px;
 }
-.doc-date{
+.doc-date {
   width: 30%;
-  padding-left: 20px;
 }
 .doc-date-info p {
   font-size: 16px;
 }
-p .fa-book{
+p .fa-book {
   margin-right: 20px;
 }
-.fa-users{
+.fa-users {
   margin-left: 20px;
   font-size: 16px;
 }
 
-.doc-info-status p{
+.doc-info-status p {
   font-size: 16px;
 }
-.doc-open-date p{
+.doc-open-date p {
   font-size: 16px;
 }
 .fa-ellipsis-v {
@@ -62,12 +59,12 @@ p .fa-book{
   font-size: 16px;
 }
 
-.creat-new-doc{
+.creat-new-doc {
   position: fixed;
   text-align: right;
   width: 100%;
 }
-.creat-new-doc button{
+.creat-new-doc button {
   font-size: 18px;
   width: 5%;
   padding: 20px 4px;
