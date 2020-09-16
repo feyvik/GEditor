@@ -21,12 +21,34 @@ input {
 a {
   color: black;
 }
-.documents {
+.doc-info-content {
   padding-top: 100px;
-  height: 70vh;
   display: flex;
   justify-content: space-around;
   margin: 0 100px 0 100px;
+}
+.row {
+  height: 60vh;
+  display: flex;
+  /* justify-content: space-around; */
+  margin: 0 100px 0 100px;
+}
+.col-12 {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.row-2 {
+  display: flex;
+}
+.col-5 {
+  width: 40%;
+}
+.col-4 {
+  width: 30%;
+}
+.col-3 {
+  width: 30%;
 }
 .doc-date {
   width: 50%;
@@ -36,6 +58,9 @@ a {
 }
 .doc-date {
   width: 30%;
+}
+.doc-date-info {
+  width: 50%;
 }
 .doc-date-info p {
   font-size: 16px;
@@ -48,6 +73,13 @@ p .fa-book {
   font-size: 16px;
 }
 
+.doc-open-date {
+  width: 20%;
+}
+
+.doc-info-status {
+  width: 30%;
+}
 .doc-info-status p {
   font-size: 16px;
 }
