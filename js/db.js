@@ -42,9 +42,9 @@ function showDoc() {
 		hour = hour % 12;
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
-		docBook.innerHTML = `
+		docBook.innerHTML += `
 		<div class="col-12" id="${holdDoc[i].id}">
-      <div class="row-2">
+      <div class="row">
         <div class="doc-date-info col-5">
 		 			<p><i class="fa fa-book"></i> ${holdDoc[i].name}  <i class="fa fa-users"></i></p>
 		 		</div>
