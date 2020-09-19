@@ -21,8 +21,8 @@
       <a href="#"><i class="fa fa-book"></i> Edit</a>
     </div>
     <div class="nav-col-input">
-      <form action="">
-        <input type="search" placeholder="Search">
+      <form action="" id="searchForm">
+        <input type="search" placeholder="Search" id="search">
       </form>
     </div>
     <div class="nav-col-img">
@@ -30,20 +30,18 @@
     </div>
   </nav>
 
-  <div class="doc-info-content">
-      <div class="doc-date">
+  <div id="documents">
+    <div class="row">
+      <div class="doc-date col-5">
         <h4>Today</h4>
       </div>
-      <div class="doc-info">
+      <div class="doc-info col-4">
         <h4>Owned by anyone</h4>
       </div>
-      <div class="doc-open">
+      <div class="doc-open col-3">
         <h4>Last opened</h4>
       </div>  
-  </div>
-
-  <div id="documents">
-    
+    </div>
   </div>
 
   <div class="creat-new-doc">

@@ -2,6 +2,7 @@ const newDoc = document.getElementById('createNewDoc');
 let userId = '';
 const docBook = document.getElementById('documents');
 const holdDoc = [];
+const searchForm = document.getElementById('searchForm');
 
 // eslint-disable-next-line no-undef
 firebase.auth().onAuthStateChanged(function(user) {
@@ -26,6 +27,7 @@ function getDocuments(id) {
 			querySnapshot.forEach(function(doc) {
 				holdDoc.push(doc.data());
 				showDoc();
+				searchDoc(id);
 			});
 		});
 }
@@ -43,8 +45,7 @@ function showDoc() {
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
 		docBook.innerHTML += `
-		<div class="col-12" id="${holdDoc[i].id}">
-      <div class="row">
+      <div class="row" id="${holdDoc[i].id}">
         <div class="doc-date-info col-5">
 		 			<p><i class="fa fa-book"></i> ${holdDoc[i].name}  <i class="fa fa-users"></i></p>
 		 		</div>
@@ -58,6 +59,30 @@ function showDoc() {
     </div>
 			 `;
 	}
+}
+
+//search form 
+searchForm.addEventListener('keyup', e => {
+	e.preventDefault();
+	const search = document.getElementById('search').value;
+	searchDoc(search);
+});
+
+//search document function
+function searchDoc(search, id) {
+	// eslint-disable-next-line no-undef
+	let db = firebase.firestore()
+		.collection('docs')
+		.doc(id)
+		.collection('documents');
+	db.get()
+		.then((querySnapshot) => {
+			querySnapshot.forEach(function(doc) {
+				holdDoc.push(doc.data());
+				showDoc();
+				searchDoc(id);
+			});
+		});
 }
 
 // redirect to editor

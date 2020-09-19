@@ -23,14 +23,8 @@ a {
 }
 #documents {
   height: 60vh;
-  /* display: flex; */
-  /* justify-content: space-around; */
   margin: 0 100px 0 100px;
-}
-.col-12 {
-  width: 100%;
-  padding: 0 10px 0 10px;
-  margin-top: 5px;
+  padding-top: 100px;
 }
 .row {
   display: flex;
@@ -42,20 +36,6 @@ a {
   width: 50%;
 }
 .col-3 {
-  width: 40%;
-}
-.doc-info-content {
-  padding-top: 100px;
-  display: flex;
-  margin: 0 100px 0 100px;
-}
-.doc-date {
-  width: 50%;
-}
-.doc-info {
-  width: 50%;
-}
-.doc-date {
   width: 40%;
 }
 .doc-date-info p {
