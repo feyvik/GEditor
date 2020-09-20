@@ -9,6 +9,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		getDocuments(userId);
+		searchDoc(userId);
 		// addDoc(userId);
 	} else {
 		console.log(user + '' + 'logged out');
@@ -27,13 +28,13 @@ function getDocuments(id) {
 			querySnapshot.forEach(function(doc) {
 				holdDoc.push(doc.data());
 				showDoc();
-				searchDoc(id);
 			});
 		});
 }
 
 // show all documents
 function showDoc() {
+	docBook.innerHTML = null;
 	for (let i = 0; i < holdDoc.length; i++){
 		console.log(holdDoc[i].name);
 		let date = new Date( holdDoc[i].updated.toMillis());
@@ -62,26 +63,23 @@ function showDoc() {
 }
 
 //search form 
-searchForm.addEventListener('keyup', e => {
-	e.preventDefault();
-	const search = document.getElementById('search').value;
-	searchDoc(search);
-});
+// searchForm.addEventListener('keyup', e => {
+// 	e.preventDefault();
+// 	const search = 'bread';
+// 	console.log
+// 	searchDoc(search);
+// });
 
 //search document function
-function searchDoc(search, id) {
+function searchDoc(id) {
+	const search = 'content';
+	console.log(id, search);
 	// eslint-disable-next-line no-undef
-	let db = firebase.firestore()
-		.collection('docs')
-		.doc(id)
-		.collection('documents');
-	db.get()
+	firebase.firestore()
+		.collection('documents')
+		.where(search, '==', id).get()
 		.then((querySnapshot) => {
-			querySnapshot.forEach(function(doc) {
-				holdDoc.push(doc.data());
-				showDoc();
-				searchDoc(id);
-			});
+			console.log(querySnapshot);
 		});
 }
 

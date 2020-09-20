@@ -21,7 +21,7 @@ input {
 a {
   color: black;
 }
-#documents {
+.documents {
   height: 60vh;
   margin: 0 100px 0 100px;
   padding-top: 100px;
