@@ -75,11 +75,22 @@ function searchDoc(id) {
 	const search = 'content';
 	console.log(id, search);
 	// eslint-disable-next-line no-undef
-	firebase.firestore()
+	let db = firebase.firestore()
+		.collection('docs')
+		.doc(id)
 		.collection('documents')
-		.where(search, '==', id).get()
-		.then((querySnapshot) => {
-			console.log(querySnapshot);
+		.where('content', '==', 'Bread');
+	db.get()
+		.then(function(querySnapshot) {
+			const d =	querySnapshot.forEach(function(doc) {
+				// doc.data() is never undefined for query doc snapshots
+				console.log(doc.id, ' => ', doc.data());
+			});
+
+			console.log(querySnapshot, d);
+		})
+		.catch(function(error) {
+			console.log('Error getting documents: ', error);
 		});
 }
 
