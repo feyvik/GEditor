@@ -1,15 +1,15 @@
 const newDoc = document.getElementById('createNewDoc');
 let userId = '';
 const docBook = document.getElementById('documents');
-const holdDoc = [];
+let holdDoc = [];
 const searchForm = document.getElementById('searchForm');
+const search = document.getElementById('search');
 
 // eslint-disable-next-line no-undef
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		getDocuments(userId);
-		searchDoc(userId);
 		// addDoc(userId);
 	} else {
 		console.log(user + '' + 'logged out');
@@ -62,32 +62,23 @@ function showDoc() {
 	}
 }
 
-//search form 
-// searchForm.addEventListener('keyup', e => {
-// 	e.preventDefault();
-// 	const search = 'bread';
-// 	console.log
-// 	searchDoc(search);
-// });
 
 //search document function
-function searchDoc(id) {
-	const search = 'content';
-	console.log(id, search);
+function searchDoc(content) {
 	// eslint-disable-next-line no-undef
 	let db = firebase.firestore()
 		.collection('docs')
-		.doc(id)
+		.doc(userId)
 		.collection('documents')
-		.where('content', '==', 'Bread');
+		.where('name', '==', content);
 	db.get()
 		.then(function(querySnapshot) {
-			const d =	querySnapshot.forEach(function(doc) {
-				// doc.data() is never undefined for query doc snapshots
+			querySnapshot.forEach(function (doc) {
+				holdDoc = [];
+				holdDoc.push(doc.data());
+				showDoc();
 				console.log(doc.id, ' => ', doc.data());
 			});
-
-			console.log(querySnapshot, d);
 		})
 		.catch(function(error) {
 			console.log('Error getting documents: ', error);
@@ -115,3 +106,8 @@ newDoc.addEventListener('click', e => {
 // 			content: 'my cv is written on white papaer with a red pen',
 // 		});
 // }
+
+searchForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	searchDoc(search.value);
+});
