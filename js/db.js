@@ -5,6 +5,26 @@ let holdDoc = [];
 const searchForm = document.getElementById('searchForm');
 const search = document.getElementById('search');
 
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+	document.getElementById('myDropdown').classList.toggle('show');
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (event) {
+	if (!event.target.matches('.dropbtn')) {
+		var dropdowns = document.getElementsByClassName('dropdown-content');
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
+};
+
 // eslint-disable-next-line no-undef
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
@@ -54,7 +74,13 @@ function showDoc() {
 		 			<p>${holdDoc[i].name}</p>
 		 		</div>
 		 		<div class="doc-open-date col-3">
-		 			<p> ${strTime} <i class="fa fa-ellipsis-v"></i></p>
+						<div class="dropdown">
+						<p> ${strTime} <i class="fa fa-ellipsis-v dropbtn" onclick="myFunction()" ></i></p>
+							<div id="myDropdown" class="dropdown-content">
+								<a href="#" target="_blank" >Delete Doc</a>
+								<a href="#">Open in New Tab</a>
+							</div>
+						</div>
 		 		</div>
       </div>
     </div>
