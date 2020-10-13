@@ -69,7 +69,7 @@ function showDoc() {
       <div class="row" id="${holdDoc[i].id}">
         <div class="doc-date-info col-5">
 		 			<p><i class="fa fa-book"></i> ${holdDoc[i].name}  <i class="fa fa-users"></i></p>
-		 		</div>
+				 </div>
 		 		<div class="doc-info-status col-4">
 		 			<p>${holdDoc[i].name}</p>
 		 		</div>
