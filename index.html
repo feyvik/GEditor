@@ -12,12 +12,50 @@
   />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+  
 </head>
 <body>
-  
+  <nav class="navbar">
+    <div class="nav-col-logo">
+      <a href="#"><i class="fa fa-book"></i> GDocs</a>
+    </div>
+    <div class="nav-col-input">
+      <form id="searchForm">
+        <input type="search" placeholder="Search" id="search">
+      </form>
+    </div>
+    <div class="nav-col-img">
+      <a href="#"><i class="fa fa-user"></i></a>
+    </div>
+  </nav>
+
+  <div class="documents">
+    <div class="row">
+      <div class="doc-date col-5">
+        <h4>Today</h4>
+      </div>
+      <div class="doc-info col-4">
+        <h4>Owned by anyone</h4>
+      </div>
+      <div class="doc-open col-3">
+        <h4>Last opened</h4>
+      </div>  
+    </div>
+    <div id="documents">
+     
+    </div>
+  </div>
+
+  <div class="creat-new-doc">
+    <button class="btn-color" type="button" id="createNewDoc">+</button>
+  </div>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
   <script src="js/init-firebase.js"></script>
+  
+  <script src="js/auth.js"></script>
+  <script src="js/db.js"></script>
 </body>
 </html>
