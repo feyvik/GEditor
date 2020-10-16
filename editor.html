@@ -35,12 +35,40 @@
           class="fa fa-align-center"
         ></span>
         <span onclick="format('justifyRight')" class="fa fa-align-right"></span>
+        <span onclick="format('underline')" class="fa fa-underline"></span>
         <input
           class="color-apply"
           type="color"
           onchange="chooseColor()"
           id="myColor"
         />
+
+        <select id="input-font" class="input" onchange="changeFont (this);">
+          <option value="Arial">Arial</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Sans serif">Sans serif</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Palatino">Palatino</option>
+          <option value="Garamond">Garamond</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+          <option value="Arial Black">Arial Black</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+        </select>
+
+        <select id="fontSize" onclick="changeSize()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
       </div> 
     </div>
     <div class="edit-content">
@@ -51,5 +79,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
   <script src="js/init-firebase.js"></script>
+
+  <script src="js/db.js"></script>
 </body>
 </html>

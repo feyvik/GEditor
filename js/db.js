@@ -117,6 +117,27 @@ newDoc.addEventListener('click', e => {
 	window.location.href = '../editor.html';
 });
 
+// editor section
+
+function format(command, value) {
+	document.execCommand(command, false, value);
+}
+
+
+function chooseColor() {
+	const color = document.getElementById('myColor').value;
+	document.execCommand('foreColor', false, color);
+}
+
+function changeFont() {
+	const Font = document.getElementById('input-font').value;
+	document.execCommand('fontName', false, Font);
+}
+
+function changeSize() {
+	const size = document.getElementById('fontSize').value;
+	document.execCommand('fontSize', false, size);
+}
 
 // function addDoc(id) {
 // 	// eslint-disable-next-line no-undef
