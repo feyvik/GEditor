@@ -1,0 +1,44 @@
+.container {
+  background: #c5c5c5;
+  height: 100vh;
+}
+.message {
+  width: 98%;
+  margin: auto;
+  min-height: 60vh;
+  border: 2px solid #b9b9b9;
+  border-radius: 5px;
+  margin-top: 6px;
+}
+.format-section {
+  text-align: center;
+  padding-top: 20px;
+  height: 6vh;
+  border-bottom: 2px solid #b9b9b9;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+.format-section span {
+  font-size: 24px;
+  margin: 2px 4px 0px 4px;
+  cursor: pointer;
+  color: #1e90ff;
+}
+.editor {
+  height: 80vh;
+  padding: 8px;
+  width: 80%;
+  margin: auto;
+  background: #ffffff;
+  border-bottom: 1px solid #b9b9b9;
+  border-right: 1px solid #b9b9b9;
+  border-left: 1px solid #b9b9b9;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+.color-apply {
+  width: 3%;
+  border: none;
+  background: none;
+}

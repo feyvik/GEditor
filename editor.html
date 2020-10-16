@@ -12,9 +12,41 @@
   />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/editor.css">
 </head>
 <body>
-  
+  <div class="container">
+    <div class="edit-icons">
+      <div class="format-section">
+        <span onclick="format('bold')" class="fa fa-bold"></span>
+        <span onclick="format('italic')" class="fa fa-italic"></span>
+        <span onclick="format('insertunorderedlist')" class="fa fa-list"></span>
+        <span
+          onclick="format('insertOrderedList')"
+          class="fa fa-list-ol"
+        ></span>
+        <span onclick="format('justifyLeft')" class="fa fa-align-left"></span>
+        <span
+          onclick="format('justifyFull')"
+          class="fa fa-align-justify"
+        ></span>
+        <span
+          onclick="format('justifyCenter')"
+          class="fa fa-align-center"
+        ></span>
+        <span onclick="format('justifyRight')" class="fa fa-align-right"></span>
+        <input
+          class="color-apply"
+          type="color"
+          onchange="chooseColor()"
+          id="myColor"
+        />
+      </div> 
+    </div>
+    <div class="edit-content">
+      <div class="editor" contenteditable="true" id="editor"></div>
+    </div>
+  </div>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
