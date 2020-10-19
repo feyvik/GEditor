@@ -26,9 +26,8 @@
 }
 .editor {
   height: 80vh;
-  padding: 8px;
+  border-top: 1px solid #b9b9b9;
   width: 80%;
-  margin: auto;
   background: #ffffff;
   border-bottom: 1px solid #b9b9b9;
   border-right: 1px solid #b9b9b9;
@@ -36,6 +35,8 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
+  margin-left: 8%;
+  margin-right: 5%;
 }
 .color-apply {
   width: 3%;

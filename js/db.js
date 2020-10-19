@@ -5,6 +5,9 @@ let holdDoc = [];
 const searchForm = document.getElementById('searchForm');
 const search = document.getElementById('search');
 
+const editorContainer = document.getElementById('editorContainer');
+const editor = document.getElementById('editor');
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction() {
@@ -30,7 +33,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		getDocuments(userId);
-		// addDoc(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -139,22 +141,30 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-// function addDoc(id) {
+
+// function addDoc(editor) {
+// 	console.log(editor);
 // 	// eslint-disable-next-line no-undef
-// 	firebase
-// 		.firestore()
-// 		.collection('docs')
-// 		.doc(id)
-// 		.collection('documents')
-// 		.add({
-// 			name: 'Bread',
-// 			createdAt: new Date(),
-// 			updated: new Date(),
-// 			content: 'my cv is written on white papaer with a red pen',
-// 		});
+// 	// firebase
+// 	// 	.firestore()
+// 	// 	.collection('docs')
+// 	// 	.doc(id)
+// 	// 	.collection('documents')
+// 	// 	.add({
+// 	// 		name: 'Bread',
+// 	// 		createdAt: new Date(),
+// 	// 		updated: new Date(),
+// 	// 		content: 'my cv is written on white papaer with a red pen',
+// 	// 	});
 // }
 
 searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	searchDoc(search.value);
+});
+
+editorContainer.addEventListener('keyup', e => {
+	console.log(editor.value);
+	e.preventDefault();
+	// addDoc(editor.value);
 });
