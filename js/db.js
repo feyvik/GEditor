@@ -7,6 +7,7 @@ const search = document.getElementById('search');
 
 const editorContainer = document.getElementById('editorContainer');
 const editor = document.getElementById('editor');
+console.log(editorContainer, editor);
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
@@ -91,7 +92,7 @@ function showDoc() {
 }
 
 
-//search document function
+// search document function
 function searchDoc(content) {
 	// eslint-disable-next-line no-undef
 	let db = firebase.firestore()
@@ -113,14 +114,8 @@ function searchDoc(content) {
 		});
 }
 
-// redirect to editor
-newDoc.addEventListener('click', e => {
-	e.preventDefault();
-	window.location.href = '../editor.html';
-});
 
 // editor section
-
 function format(command, value) {
 	document.execCommand(command, false, value);
 }
@@ -144,27 +139,39 @@ function changeSize() {
 
 // function addDoc(editor) {
 // 	console.log(editor);
-// 	// eslint-disable-next-line no-undef
-// 	// firebase
-// 	// 	.firestore()
-// 	// 	.collection('docs')
-// 	// 	.doc(id)
-// 	// 	.collection('documents')
-// 	// 	.add({
-// 	// 		name: 'Bread',
-// 	// 		createdAt: new Date(),
-// 	// 		updated: new Date(),
-// 	// 		content: 'my cv is written on white papaer with a red pen',
-// 	// 	});
+// eslint-disable-next-line no-undef
+// firebase
+// 	.firestore()
+// 	.collection('docs')
+// 	.doc(id)
+// 	.collection('documents')
+// 	.add({
+// 		name: 'Bread',
+// 		createdAt: new Date(),
+// 		updated: new Date(),
+// 		content: 'my cv is written on white papaer with a red pen',
+// 	});
 // }
 
-searchForm.addEventListener('submit', (e) => {
-	e.preventDefault();
-	searchDoc(search.value);
-});
+function checkNullValus() {
+	if (newDoc === null) {
+		editorContainer.addEventListener('keyup', (e) => {
+			e.preventDefault();
+			// addDoc(editor.value);
+			console.log(editor.innerText);
+		});
+	} else {
+		searchForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			searchDoc(search.value);
+		});
+		// redirect to editor
+		newDoc.addEventListener('click', e => {
+			e.preventDefault();
+			window.location.href = '../editor.html';
+		});
+	}
+}
 
-editorContainer.addEventListener('keyup', e => {
-	console.log(editor.value);
-	e.preventDefault();
-	// addDoc(editor.value);
-});
+
+checkNullValus();
