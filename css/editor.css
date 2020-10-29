@@ -1,12 +1,11 @@
 .container {
-  background: #c5c5c5;
+  background: #f0f0f0;
   height: 100vh;
 }
 .message {
   width: 98%;
   margin: auto;
   min-height: 60vh;
-  border: 2px solid #b9b9b9;
   border-radius: 5px;
   margin-top: 6px;
 }
@@ -14,7 +13,6 @@
   text-align: center;
   padding-top: 20px;
   height: 6vh;
-  border-bottom: 2px solid #b9b9b9;
   background-color: #ffffff;
   margin-bottom: 20px;
 }
@@ -26,12 +24,9 @@
 }
 .editor {
   height: 80vh;
-  border-top: 1px solid #b9b9b9;
   width: 80%;
   background: #ffffff;
-  border-bottom: 1px solid #b9b9b9;
-  border-right: 1px solid #b9b9b9;
-  border-left: 1px solid #b9b9b9;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;

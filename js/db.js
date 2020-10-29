@@ -115,14 +115,12 @@ function searchDoc(content) {
 
 
 
-
-
-
-
 searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	searchDoc(search.value);
 });
+
+
 // redirect to editor
 newDoc.addEventListener('click', e => {
 	e.preventDefault();

@@ -1,7 +1,16 @@
 /* eslint-disable no-unused-vars */
-const editorContainer = document.getElementById('editorContainer');
 const editor = document.getElementById('editor');
-console.log(editorContainer, editor, 'eeee');
+let userId = '';
+let dos = '';
+
+// eslint-disable-next-line no-undef
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		userId = user.uid;
+	} else {
+		console.log(user + '' + 'logged out');
+	}
+});
 
 // editor section
 function format(command, value) {
@@ -24,18 +33,24 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
+editor.addEventListener('click', (e) => {
+	console.log(e.target.innerHTML);
+	dos = e.target.innerHTML;
+});
+
+
 // function addDoc(editor) {
 // 	console.log(editor);
-// eslint-disable-next-line no-undef
-// firebase
-// 	.firestore()
-// 	.collection('docs')
-// 	.doc(id)
-// 	.collection('documents')
-// 	.add({
-// 		name: 'Bread',
-// 		createdAt: new Date(),
-// 		updated: new Date(),
-// 		content: 'my cv is written on white papaer with a red pen',
-// 	});
+// 	// eslint-disable-next-line no-undef
+// 	firebase
+// 		.firestore()
+// 		.collection('docs')
+// 		.doc(userId)
+// 		.collection('documents')
+// 		.add({
+// 			name: dos,
+// 			createdAt: new Date(),
+// 			updated: new Date(),
+// 			content: dos,
+// 		});
 // }
