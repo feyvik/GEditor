@@ -33,13 +33,10 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-const id = document.getElementById('display');
 editor.addEventListener('keyup', (e) => {
-	id.innerHTML = null;
 	console.log(e.target.innerHTML);
 	dos = e.target.innerHTML;
-	display.innerHTML += dos;
-	addDoc(dos)
+	addDoc(dos);
 });
 
 

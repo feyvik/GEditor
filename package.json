@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slightlynerd/text-editor.git"
+    "url": "git+https://github.com/FayVik/GEditor.git.git"
   },
   "keywords": [
     "text",
@@ -17,7 +17,10 @@
   "author": "Kelvin Gobo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slightlynerd/text-editor/issues"
+    "url": "https://github.com/FayVik/GEditor.git/issues"
   },
-  "homepage": "https://github.com/slightlynerd/text-editor#readme"
+  "homepage": "https://github.com/FayVik/GEditor.git#readme",
+  "devDependencies": {
+    "eslint": "^7.13.0"
+  }
 }
