@@ -33,24 +33,28 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-editor.addEventListener('click', (e) => {
+const id = document.getElementById('display');
+editor.addEventListener('keyup', (e) => {
+	id.innerHTML = null;
 	console.log(e.target.innerHTML);
 	dos = e.target.innerHTML;
+	display.innerHTML += dos;
+	addDoc(dos)
 });
 
 
-// function addDoc(editor) {
-// 	console.log(editor);
-// 	// eslint-disable-next-line no-undef
-// 	firebase
-// 		.firestore()
-// 		.collection('docs')
-// 		.doc(userId)
-// 		.collection('documents')
-// 		.add({
-// 			name: dos,
-// 			createdAt: new Date(),
-// 			updated: new Date(),
-// 			content: dos,
-// 		});
-// }
+function addDoc(dus) {
+	console.log(dus);
+	// eslint-disable-next-line no-undef
+	firebase
+		.firestore()
+		.collection('docs')
+		.doc(userId)
+		.collection('documents')
+		.add({
+			name: dus,
+			createdAt: new Date(),
+			updated: new Date(),
+			content: dos,
+		});
+}
