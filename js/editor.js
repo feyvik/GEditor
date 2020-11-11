@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 const editor = document.getElementById('editor');
 let userId = '';
+let userName = '';
 let dos = '';
 
 // eslint-disable-next-line no-undef
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
+		userName = user.displayName;
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -49,9 +51,9 @@ function addDoc(dus) {
 		.doc(userId)
 		.collection('documents')
 		.add({
-			name: dus,
+			name: userName,
 			createdAt: new Date(),
 			updated: new Date(),
-			content: dos,
+			content: dus,
 		});
 }

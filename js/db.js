@@ -48,7 +48,10 @@ function getDocuments(id) {
 	db.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach(function(doc) {
-				holdDoc.push(doc.data());
+				let dcus = doc.data();
+				dcus.id = doc.id;
+				holdDoc.push(dcus);
+				// console.log();
 				showDoc();
 			});
 		});
@@ -56,9 +59,9 @@ function getDocuments(id) {
 
 // show all documents
 function showDoc() {
+	console.log(holdDoc);
 	docBook.innerHTML = null;
 	for (let i = 0; i < holdDoc.length; i++){
-		console.log(holdDoc[i].name);
 		let date = new Date( holdDoc[i].updated.toMillis());
 		let hour = date.getHours();
 		let sec = date.getSeconds();
@@ -68,9 +71,9 @@ function showDoc() {
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
 		docBook.innerHTML += `
-      <div class="row" id="${holdDoc[i].id}">
+      <div class="row">
         <div class="doc-date-info col-5">
-		 			<p><i class="fa fa-book"></i> ${holdDoc[i].name}  <i class="fa fa-users"></i></p>
+		 			<p><a id="${holdDoc[i].id}" onclick="getSingleDoc(id)"><i class="fa fa-book"></i> ${holdDoc[i].content}  <i class="fa fa-users"></i></a></p>
 				 </div>
 		 		<div class="doc-info-status col-4">
 		 			<p>${holdDoc[i].name}</p>
@@ -90,6 +93,30 @@ function showDoc() {
 	}
 }
 
+// eslint-disable-next-line no-unused-vars
+function getSingleDoc(id){
+	console.log(id);
+	// eslint-disable-next-line no-undef
+	// firebase
+	// 	.firestore()
+	// 	.collection('docs')
+	// 	.doc(userId)
+	// 	.collection('documents')
+	// 	.doc(id)
+	// 	.get()
+	// 	.then((doc) => {
+	// 		// 
+	// 		if (doc.exists) {
+	// 			window.location.href = '../editor.html';
+	// 			console.log('Document data:', doc.data());
+	// 		} else {
+	// 			// doc.data() will be undefined in this case
+	// 			console.log('No such document!');
+	// 		}
+	// 	}).catch(function(error) {
+	// 		console.log('Error getting document:', error);
+	// 	});
+}
 
 // search document function
 function searchDoc(content) {
@@ -105,7 +132,6 @@ function searchDoc(content) {
 				holdDoc = [];
 				holdDoc.push(doc.data());
 				showDoc();
-				console.log(doc.id, ' => ', doc.data());
 			});
 		})
 		.catch(function(error) {
