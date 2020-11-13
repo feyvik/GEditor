@@ -132,5 +132,6 @@ searchForm.addEventListener('submit', (e) => {
 // redirect to editor
 newDoc.addEventListener('click', e => {
 	e.preventDefault();
+	localStorage.removeItem('data');
 	window.location.href = '../editor.html';
 });

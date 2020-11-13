@@ -38,3 +38,10 @@
 	border: none;
 	background: none;
 }
+button {
+	color: #ffffff;
+}
+.btn-color {
+	padding: 5px 15px;
+	margin-left: 40px;
+}

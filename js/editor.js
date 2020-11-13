@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const editor = document.getElementById('editor');
+const save = document.getElementById('save');
 let userId = '';
 let userName = '';
 let dos = '';
@@ -39,9 +40,15 @@ function changeSize() {
 editor.addEventListener('keyup', (e) => {
 	console.log(e.target.innerHTML);
 	dos = e.target.innerHTML;
-	addDoc(dos);
+	localStorage.setItem('document', dos);
 });
 
+save.addEventListener('click', e => {
+	e.preventDefault();
+	const send = localStorage.getItem('document');
+	console.log(send);
+	addDoc(send);
+});
 
 function addDoc(dus) {
 	console.log(dus);

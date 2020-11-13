@@ -68,9 +68,10 @@ p .fa-book {
 .creat-new-doc button {
 	font-size: 18px;
 	width: 5%;
-	padding: 20px 4px;
+	padding: 24px 4px;
 	border-radius: 100px;
 	margin-right: 20px;
+	margin-top: 4%;
 }
 
 .dropdown {
