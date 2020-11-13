@@ -121,8 +121,6 @@ function searchDoc(content) {
 		});
 }
 
-
-
 searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	searchDoc(search.value);
