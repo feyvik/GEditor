@@ -9,6 +9,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		userName = user.displayName;
+		getSingleDocDetails(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -55,5 +56,31 @@ function addDoc(dus) {
 			createdAt: new Date(),
 			updated: new Date(),
 			content: dus,
+		});
+}
+
+// eslint-disable-next-line no-unused-vars
+function getSingleDocDetails(Id){
+	let data = localStorage.getItem('data');
+	console.log(data);
+	// eslint-disable-next-line no-undef
+	firebase
+		.firestore()
+		.collection('docs')
+		.doc(Id)
+		.collection('documents')
+		.doc(data)
+		.get()
+		.then((doc) => {
+			// 
+			if (doc.exists) {
+				console.log('Document data:', doc.data());
+				editor.innerHTML += doc.data().content;
+			} else {
+				// doc.data() will be undefined in this case
+				console.log('No such document!');
+			}
+		}).catch(function(error) {
+			console.log('Error getting document:', error);
 		});
 }

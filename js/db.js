@@ -73,7 +73,7 @@ function showDoc() {
 		docBook.innerHTML += `
       <div class="row">
         <div class="doc-date-info col-5">
-		 			<p><a id="${holdDoc[i].id}" onclick="getSingleDoc(id)"><i class="fa fa-book"></i> ${holdDoc[i].content}  <i class="fa fa-users"></i></a></p>
+		 			<p><a id="${holdDoc[i].id}" onclick="getSingleDocId(id)"><i class="fa fa-book"></i> ${holdDoc[i].content}  <i class="fa fa-users"></i></a></p>
 				 </div>
 		 		<div class="doc-info-status col-4">
 		 			<p>${holdDoc[i].name}</p>
@@ -94,28 +94,10 @@ function showDoc() {
 }
 
 // eslint-disable-next-line no-unused-vars
-function getSingleDoc(id){
+function getSingleDocId(id){
 	console.log(id);
-	// eslint-disable-next-line no-undef
-	// firebase
-	// 	.firestore()
-	// 	.collection('docs')
-	// 	.doc(userId)
-	// 	.collection('documents')
-	// 	.doc(id)
-	// 	.get()
-	// 	.then((doc) => {
-	// 		// 
-	// 		if (doc.exists) {
-	// 			window.location.href = '../editor.html';
-	// 			console.log('Document data:', doc.data());
-	// 		} else {
-	// 			// doc.data() will be undefined in this case
-	// 			console.log('No such document!');
-	// 		}
-	// 	}).catch(function(error) {
-	// 		console.log('Error getting document:', error);
-	// 	});
+	localStorage.setItem('data', id);
+	window.location.href = '../editor.html';
 }
 
 // search document function

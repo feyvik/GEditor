@@ -1,40 +1,40 @@
 .container {
-  background: #f0f0f0;
-  height: 100vh;
+	background: #f0f0f0;
+	height: 100vh;
 }
 .message {
-  width: 98%;
-  margin: auto;
-  min-height: 60vh;
-  border-radius: 5px;
-  margin-top: 6px;
+	width: 98%;
+	margin: auto;
+	min-height: 60vh;
+	border-radius: 5px;
+	margin-top: 6px;
 }
 .format-section {
-  text-align: center;
-  padding-top: 20px;
-  height: 6vh;
-  background-color: #ffffff;
-  margin-bottom: 20px;
+	text-align: center;
+	padding-top: 20px;
+	height: 6vh;
+	background-color: #ffffff;
+	margin-bottom: 20px;
 }
 .format-section span {
-  font-size: 24px;
-  margin: 2px 4px 0px 4px;
-  cursor: pointer;
-  color: #1e90ff;
+	font-size: 24px;
+	margin: 2px 4px 0px 4px;
+	cursor: pointer;
+	color: #252525;
 }
 .editor {
-  height: 80vh;
-  width: 80%;
-  background: #ffffff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  margin-left: 8%;
-  margin-right: 5%;
+	height: 80vh;
+	width: 80%;
+	background: #ffffff;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	margin-left: 8%;
+	margin-right: 5%;
 }
 .color-apply {
-  width: 3%;
-  border: none;
-  background: none;
+	width: 3%;
+	border: none;
+	background: none;
 }
