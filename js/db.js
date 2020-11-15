@@ -70,15 +70,31 @@ function showDoc() {
 		hour = hour % 12;
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
+
+		let subString = holdDoc[i].content.replace(/^(.{20}[^\s]*).*/, '$1');
+
+		// let maxLength = 12;
+
+		// if(holdDoc[i].content.length > 6){
+		// 	//trim the string to the maximum length
+		// 	var trimmedString = holdDoc[i].content.substr(0, maxLength);
+		// 	console.log(trimmedString = holdDoc[i].content.substr(0, maxLength));
+
+		// 	//re-trim if we are in the middle of a word and 
+		// 	trimmedString = trimmedString.substr(0, Math.min(6, trimmedString.lastIndexOf(' ')));
+		// 	console.log(trimmedString = trimmedString.substr(0, Math.min(6, trimmedString.lastIndexOf(' '))));
+		// }
+
 		docBook.innerHTML += `
       <div class="row">
         <div class="doc-date-info col-5">
-		 			<p><a id="${holdDoc[i].id}" onclick="getSingleDocId(id)"><i class="fa fa-book"></i> ${holdDoc[i].content}  <i class="fa fa-users"></i></a></p>
+		 			<p><a id="${holdDoc[i].id}" onclick="getSingleDocId(id)"><i class="fa fa-book"></i> ${subString}  <i class="fa fa-users"></i></a></p>
 				 </div>
-		 		<div class="doc-info-status col-4">
-		 			<p>${holdDoc[i].name}</p>
-		 		</div>
-		 		<div class="doc-open-date col-3">
+				 <div class="row">
+					<div class="doc-info-status col-4">
+						<p>${holdDoc[i].name}</p>
+					</div>
+					<div class="doc-open-date col-3">
 						<div class="dropdown">
 						<p> ${strTime} <i class="fa fa-ellipsis-v dropbtn" onclick="myFunction()" ></i></p>
 							<div id="myDropdown" class="dropdown-content">
@@ -86,6 +102,7 @@ function showDoc() {
 								<a href="#">Open in New Tab</a>
 							</div>
 						</div>
+					</div>
 		 		</div>
       </div>
     </div>

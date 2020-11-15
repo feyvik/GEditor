@@ -37,21 +37,8 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-editor.addEventListener('keyup', (e) => {
-	console.log(e.target.innerHTML);
-	dos = e.target.innerHTML;
-	localStorage.setItem('document', dos);
-});
-
-save.addEventListener('click', e => {
-	e.preventDefault();
-	const send = localStorage.getItem('document');
-	console.log(send);
-	addDoc(send);
-});
-
-function addDoc(dus) {
-	console.log(dus);
+function addDoc(book) {
+	console.log(book);
 	// eslint-disable-next-line no-undef
 	firebase
 		.firestore()
@@ -62,7 +49,7 @@ function addDoc(dus) {
 			name: userName,
 			createdAt: new Date(),
 			updated: new Date(),
-			content: dus,
+			content: book,
 		});
 }
 
@@ -81,7 +68,7 @@ function getSingleDocDetails(Id){
 		.then((doc) => {
 			// 
 			if (doc.exists) {
-				console.log('Document data:', doc.data());
+				console.log('Document data:', doc.data().content);
 				editor.innerHTML += doc.data().content;
 			} else {
 				// doc.data() will be undefined in this case
@@ -91,3 +78,37 @@ function getSingleDocDetails(Id){
 			console.log('Error getting document:', error);
 		});
 }
+
+function updateDoc(send){
+	let data = localStorage.getItem('data');
+	console.log(send);
+	// eslint-disable-next-line no-undef
+	firebase
+		.firestore()
+		.collection('docs')
+		.doc(userId)
+		.collection('documents')
+		.doc(data)
+		.update({
+			content: send,
+			name: userName,
+		});
+}
+
+save.addEventListener('click', e => {
+	e.preventDefault();
+	const send = localStorage.getItem('document');
+	const id = localStorage.getItem('data');
+	console.log(send, id);
+	if(id == null){
+		addDoc(send);
+	} else {
+		updateDoc(send);
+	}
+});
+
+editor.addEventListener('keyup', (e) => {
+	console.log(e.target.innerHTML);
+	dos = e.target.innerHTML;
+	localStorage.setItem('document', dos);
+});
