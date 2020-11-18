@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const editor = document.getElementById('editor');
-const save = document.getElementById('save');
+const loading = document.getElementById('loading');
 let userId = '';
 let userName = '';
 let dos = '';
@@ -10,7 +10,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		userName = user.displayName;
-		getSingleDocDetails(userId);
+		init();
+		// getSingleDocDetails(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -37,38 +38,40 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-function addDoc(book) {
-	console.log(book);
+function addDoc() {
+	const docId = localStorage.getItem('token');
+	const word = localStorage.getItem('document');
+	// eslint-disable-next-line no-undef
+	firebase
+		.firestore()
+		.collection('docs').doc(userId).collection('documents').doc(docId).set({
+			name: userName,
+			createdAt: new Date(),
+			updated: new Date(),
+			content: word,
+		})
+		.then(() => {
+			loading.style.display = 'none';
+		})
+		.catch(function(error) {
+			console.error('Error writing document: ', error);
+		});
+}
+
+// eslint-disable-next-line no-unused-vars
+function getSingleDocDetails(docId){
 	// eslint-disable-next-line no-undef
 	firebase
 		.firestore()
 		.collection('docs')
 		.doc(userId)
 		.collection('documents')
-		.add({
-			name: userName,
-			createdAt: new Date(),
-			updated: new Date(),
-			content: book,
-		});
-}
-
-// eslint-disable-next-line no-unused-vars
-function getSingleDocDetails(Id){
-	let data = localStorage.getItem('data');
-	console.log(data);
-	// eslint-disable-next-line no-undef
-	firebase
-		.firestore()
-		.collection('docs')
-		.doc(Id)
-		.collection('documents')
-		.doc(data)
+		.doc(docId)
 		.get()
 		.then((doc) => {
 			// 
 			if (doc.exists) {
-				console.log('Document data:', doc.data().content);
+				loading.style.display = 'none';
 				editor.innerHTML += doc.data().content;
 			} else {
 				// doc.data() will be undefined in this case
@@ -79,36 +82,25 @@ function getSingleDocDetails(Id){
 		});
 }
 
-function updateDoc(send){
-	let data = localStorage.getItem('data');
-	console.log(send);
-	// eslint-disable-next-line no-undef
-	firebase
-		.firestore()
-		.collection('docs')
-		.doc(userId)
-		.collection('documents')
-		.doc(data)
-		.update({
-			content: send,
-			name: userName,
-		});
-}
-
-save.addEventListener('click', e => {
-	e.preventDefault();
-	const send = localStorage.getItem('document');
-	const id = localStorage.getItem('data');
-	console.log(send, id);
-	if(id == null){
-		addDoc(send);
-	} else {
-		updateDoc(send);
-	}
-});
-
-editor.addEventListener('keyup', (e) => {
-	console.log(e.target.innerHTML);
+editor.addEventListener('keydown', (e) => {
 	dos = e.target.innerHTML;
 	localStorage.setItem('document', dos);
+	setTimeout(() => {
+		addDoc();
+		loading.style.display = 'block';
+	}, 3000);
 });
+
+function init(){
+	const token = localStorage.getItem('token');
+	if(!token){
+		// eslint-disable-next-line no-undef
+		const docId = firebase.firestore().collection('docs').doc(userId).collection('documents').doc().id;
+		localStorage.setItem('token', docId);
+	}else{
+		setTimeout(() => {
+			getSingleDocDetails(token);
+			loading.style.display = 'block';
+		}, 3000);
+	}
+}

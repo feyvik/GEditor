@@ -23,36 +23,15 @@ a {
 	color: black;
 }
 .documents {
-	height: 60vh;
-	margin: 0 100px 0 100px;
-	padding-top: 100px;
-}
-.row {
-	display: flex;
-}
-.col-5 {
-	width: 80%;
-}
-.col-4 {
-	width: 30%;
-}
-.col-3 {
-	width: 30%;
-}
-.doc-date-info p {
-	font-size: 16px;
+	height: 80vh;
+	width: 90%;
+	margin: auto;
 }
 p .fa-book {
 	margin-right: 20px;
 }
 .fa-users {
 	margin-left: 20px;
-	font-size: 16px;
-}
-.doc-info-status p {
-	font-size: 16px;
-}
-.doc-open-date p {
 	font-size: 16px;
 }
 .fa-ellipsis-v {
@@ -67,11 +46,10 @@ p .fa-book {
 }
 .creat-new-doc button {
 	font-size: 18px;
-	width: 5%;
-	padding: 24px 4px;
 	border-radius: 100px;
 	margin-right: 20px;
 	margin-top: 4%;
+	padding: 20px 26px;
 }
 
 .dropdown {
@@ -102,4 +80,55 @@ p .fa-book {
 
 .show {
 	display: block;
+}
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float: left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child {
+	margin-left: 0;
+}
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+.group:after {
+	clear: both;
+}
+.group {
+	zoom: 1; /* For IE 6/7 */
+}
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.13%;
+}
+.span_1_of_3 {
+	width: 32.26%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+	.span_3_of_3,
+	.span_2_of_3,
+	.span_1_of_3 {
+		width: 100%;
+	}
 }

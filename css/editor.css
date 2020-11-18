@@ -1,6 +1,7 @@
 .container {
 	background: #f0f0f0;
 	height: 100vh;
+	font-family: "Raleway", sans-serif;
 }
 .message {
 	width: 98%;
@@ -23,25 +24,23 @@
 	color: #252525;
 }
 .editor {
-	height: 80vh;
+	min-height: 70vh;
 	width: 80%;
 	background: #ffffff;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-top: 20px;
+	padding-top: 40px;
 	margin-left: 8%;
 	margin-right: 5%;
+	outline: none;
 }
-.color-apply {
-	width: 3%;
-	border: none;
-	background: none;
-}
-button {
-	color: #ffffff;
-}
-.btn-color {
-	padding: 5px 15px;
-	margin-left: 40px;
+#loading {
+	position: relative;
+	font-size: 14px;
+	margin-right: 14px;
+	text-align: right;
+	color: rgb(3, 170, 3);
+	font-weight: 600;
+	display: none;
 }

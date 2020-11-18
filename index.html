@@ -1,61 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/index.css">
-  
-</head>
-<body>
-  <nav class="navbar">
-    <div class="nav-col-logo">
-      <a href="#"><i class="fa fa-book"></i> GDocs</a>
-    </div>
-    <div class="nav-col-input">
-      <form id="searchForm">
-        <input type="search" placeholder="Search" id="search">
-      </form>
-    </div>
-    <div class="nav-col-img">
-      <a href="#"><i class="fa fa-user"></i></a>
-    </div>
-  </nav>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard</title>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+			integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+			crossorigin="anonymous"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+		<nav class="navbar">
+			<div class="nav-col-logo">
+				<a href="#"><i class="fa fa-book"></i> GDocs</a>
+			</div>
+			<div class="nav-col-input">
+				<form id="searchForm">
+					<input type="search" placeholder="Search" id="search" />
+				</form>
+			</div>
+			<div class="nav-col-img">
+				<a href="#"><i class="fa fa-user"></i></a>
+			</div>
+		</nav>
 
-  <div class="documents">
-    <div class="row">
-      <div class="doc-date col-5">
-        <h4>Today</h4>
-      </div>
-      <div class="doc-info col-4">
-        <h4>Owned by anyone</h4>
-      </div>
-      <div class="doc-open col-3">
-        <h4>Last opened</h4>
-      </div>  
-    </div>
-    <div id="documents">
-     
-    </div>
-  </div>
+		<div class="documents">
+			<div class="section group">
+				<div class="col span_1_of_3"><h4>Today</h4></div>
+				<div class="col span_1_of_3"><h4>Owned by anyone</h4></div>
+				<div class="col span_1_of_3"><h4>Last opened</h4></div>
+			</div>
+			<div id="documents"></div>
+		</div>
 
-  <div class="creat-new-doc">
-    <button class="btn-color" type="button" id="createNewDoc">+</button>
-  </div>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
-  <script src="js/init-firebase.js"></script>
-  
-  <script src="js/auth.js"></script>
-  <script src="js/db.js"></script>
-</body>
+		<div class="creat-new-doc">
+			<button class="btn-color" type="button" id="createNewDoc">+</button>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+		<script src="js/init-firebase.js"></script>
+
+		<script src="js/auth.js"></script>
+		<script src="js/db.js"></script>
+	</body>
 </html>

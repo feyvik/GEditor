@@ -1,41 +1,40 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
+	margin: 0;
+	padding: 0;
+	font-family: "Raleway", sans-serif;
+	font-size: 16px;
 }
 p {
-  font-size: 18px;
+	font-size: 18px;
 }
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 .btn-google {
-  border-radius: 6px;
-  background: #fff;
-  padding: 10px 20px;
-  color: #7f7f7f;
+	border-radius: 6px;
+	background: #fff;
+	padding: 10px 20px;
+	color: #7f7f7f;
 }
 button {
-  cursor: pointer;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  box-shadow: 0 4px 8px 0 rgba(148, 148, 148, 0.19),
-    0 6px 20px 0 rgba(165, 165, 165, 0.19);
+	cursor: pointer;
+	color: #fff;
+	border: none;
+	font-size: 18px;
+	box-shadow: 0 4px 8px 0 rgba(148, 148, 148, 0.19),
+		0 6px 20px 0 rgba(165, 165, 165, 0.19);
 }
 .btn-color {
-  border-radius: 6px;
-  padding: 10px 50px;
-  background: #6337e4;
+	border-radius: 6px;
+	background: #6337e4;
 }
 h1 {
-  font-size: 40px;
+	font-size: 40px;
 }
 h3 {
-  font-size: 30px;
+	font-size: 30px;
 }
-.fa-ellipsis-v{
-  cursor: pointer;
+.fa-ellipsis-v {
+	cursor: pointer;
 }
