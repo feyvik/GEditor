@@ -22,12 +22,6 @@ function format(command, value) {
 	document.execCommand(command, false, value);
 }
 
-
-function chooseColor() {
-	const color = document.getElementById('myColor').value;
-	document.execCommand('foreColor', false, color);
-}
-
 function changeFont() {
 	const Font = document.getElementById('input-font').value;
 	document.execCommand('fontName', false, Font);
@@ -38,9 +32,8 @@ function changeSize() {
 	document.execCommand('fontSize', false, size);
 }
 
-function addDoc() {
+function addDoc(word) {
 	const docId = localStorage.getItem('token');
-	const word = localStorage.getItem('document');
 	// eslint-disable-next-line no-undef
 	firebase
 		.firestore()
@@ -69,12 +62,10 @@ function getSingleDocDetails(docId){
 		.doc(docId)
 		.get()
 		.then((doc) => {
-			// 
 			if (doc.exists) {
 				loading.style.display = 'none';
 				editor.innerHTML += doc.data().content;
 			} else {
-				// doc.data() will be undefined in this case
 				console.log('No such document!');
 			}
 		}).catch(function(error) {
@@ -82,14 +73,24 @@ function getSingleDocDetails(docId){
 		});
 }
 
-editor.addEventListener('keydown', (e) => {
+var delay = (function(){
+	var timer = 0;
+	return function(callback, ms){
+		clearTimeout (timer);
+		timer = setTimeout(callback, ms);
+	};
+})();
+
+editor.addEventListener('input', e => {
 	dos = e.target.innerHTML;
 	localStorage.setItem('document', dos);
-	setTimeout(() => {
-		addDoc();
-		loading.style.display = 'block';
-	}, 3000);
+	console.log(dos);
+	delay(function(){
+		const word =	localStorage.getItem('document');
+		console.log(word);
+	}, 1000 );
 });
+
 
 function init(){
 	const token = localStorage.getItem('token');
@@ -98,9 +99,31 @@ function init(){
 		const docId = firebase.firestore().collection('docs').doc(userId).collection('documents').doc().id;
 		localStorage.setItem('token', docId);
 	}else{
-		setTimeout(() => {
+		delay(function(){
 			getSingleDocDetails(token);
 			loading.style.display = 'block';
-		}, 3000);
+		}, 1000 );
 	}
 }
+
+window.addEventListener('load', function () {
+	const status = document.getElementById('status');
+	const log = document.getElementById('log');
+	function updateOnlineStatus() {
+		if (navigator.onLine === true) {
+			console.log('errrr');
+			status.innerHTML = 'online'.toUpperCase();
+			log.innerHTML = ' Status: ' + 'online';
+			return (status.className = 'online');
+		} else {
+			console.log('errrr2');
+			status.innerHTML = 'offline'.toUpperCase();
+			log.innerHTML = ' Status: ' + 'offline';
+			return (status.className = 'offline');
+		}
+	}
+	updateOnlineStatus();
+	updateOnlineStatus();
+	window.addEventListener('online', updateOnlineStatus);
+	window.addEventListener('offline', updateOnlineStatus);
+});

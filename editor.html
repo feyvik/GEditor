@@ -58,13 +58,6 @@
 						><span class="fa fa-underline fa-fw"></span
 					></a>
 
-					<input
-						class="color-apply"
-						type="color"
-						onchange="chooseColor()"
-						id="myColor"
-					/>
-
 					<select id="input-font" class="input" onchange="changeFont (this);">
 						<option value="Arial">Arial</option>
 						<option value="Helvetica">Helvetica</option>
@@ -94,9 +87,11 @@
 				</div>
 			</div>
 			<div class="edit-content">
-				<p class="loading" id="loading">Saving document....</p>
 				<div class="editor" contenteditable="true" id="editor"></div>
+				<p class="loading" id="loading">Saving document....</p>
 			</div>
+			<div id="status"></div>
+			<div id="log"></div>
 		</div>
 		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
