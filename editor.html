@@ -72,6 +72,8 @@
 						<option value="Arial Black">Arial Black</option>
 						<option value="Tahoma">Tahoma</option>
 						<option value="Comic Sans MS">Comic Sans MS</option>
+						<option value="Roboto">Roboto</option>
+						<option value="Rainway">Rainway</option>
 					</select>
 
 					<select id="fontSize" onclick="changeSize()">
@@ -84,14 +86,14 @@
 						<option value="7">7</option>
 						<option value="8">8</option>
 					</select>
+					<span id="status"></span>
+					<span id="log"></span>
 				</div>
 			</div>
 			<div class="edit-content">
 				<div class="editor" contenteditable="true" id="editor"></div>
 				<p class="loading" id="loading">Saving document....</p>
 			</div>
-			<div id="status"></div>
-			<div id="log"></div>
 		</div>
 		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>

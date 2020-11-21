@@ -58,7 +58,6 @@ function getDocuments(id) {
 
 // show all documents
 function showDoc() {
-	console.log(holdDoc);
 	docBook.innerHTML = null;
 	for (let i = 0; i < holdDoc.length; i++){
 		let date = new Date( holdDoc[i].updated.toMillis());
@@ -70,7 +69,7 @@ function showDoc() {
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
 
-		let subString = holdDoc[i].content.replace(/^(.{20}[^\s]*).*/, '$1');
+		let subString = holdDoc[i].content.replace(/^(.{14}[^\s]*).*/, '$1');
 
 		docBook.innerHTML += `
 			<div class="section group">

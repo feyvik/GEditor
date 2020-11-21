@@ -11,7 +11,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 		userId = user.uid;
 		userName = user.displayName;
 		init();
-		// getSingleDocDetails(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -63,7 +62,6 @@ function getSingleDocDetails(docId){
 		.get()
 		.then((doc) => {
 			if (doc.exists) {
-				loading.style.display = 'none';
 				editor.innerHTML += doc.data().content;
 			} else {
 				console.log('No such document!');
@@ -87,10 +85,9 @@ editor.addEventListener('input', e => {
 	console.log(dos);
 	delay(function(){
 		const word =	localStorage.getItem('document');
-		console.log(word);
+		addDoc(word);
 	}, 1000 );
 });
-
 
 function init(){
 	const token = localStorage.getItem('token');
@@ -101,29 +98,32 @@ function init(){
 	}else{
 		delay(function(){
 			getSingleDocDetails(token);
-			loading.style.display = 'block';
 		}, 1000 );
 	}
 }
 
-window.addEventListener('load', function () {
-	const status = document.getElementById('status');
-	const log = document.getElementById('log');
-	function updateOnlineStatus() {
-		if (navigator.onLine === true) {
-			console.log('errrr');
-			status.innerHTML = 'online'.toUpperCase();
-			log.innerHTML = ' Status: ' + 'online';
-			return (status.className = 'online');
-		} else {
-			console.log('errrr2');
-			status.innerHTML = 'offline'.toUpperCase();
-			log.innerHTML = ' Status: ' + 'offline';
-			return (status.className = 'offline');
-		}
-	}
-	updateOnlineStatus();
-	updateOnlineStatus();
-	window.addEventListener('online', updateOnlineStatus);
-	window.addEventListener('offline', updateOnlineStatus);
-});
+// window.addEventListener('load', function () {
+// 	const log = document.getElementById('log');
+// 	function updateOnlineStatus() {
+// 		const status = document.getElementById('status');
+// 		if (navigator.onLine === true) {
+// 		// console.log('errrr');
+// 			const word =	localStorage.getItem('document');
+// 			// addDoc(word);
+// 			console.log('rrrrr');
+// 			loading.style.display = 'block';
+// 			status.innerHTML = 'online'.toUpperCase();
+// 			log.innerHTML = ' Status: ' + 'online';
+// 			return (status.className = 'online');
+// 		} else {
+// 			console.log('errrr2');
+// 			status.innerHTML = 'offline'.toUpperCase();
+// 			log.innerHTML = ' Status: ' + 'offline';
+// 			return (status.className = 'offline');
+// 		}
+// 	}
+// 	updateOnlineStatus();
+// 	updateOnlineStatus();
+// 	window.addEventListener('online', updateOnlineStatus);
+// 	window.addEventListener('offline', updateOnlineStatus);
+// });

@@ -44,3 +44,9 @@
 	font-weight: 600;
 	display: none;
 }
+#status {
+	color: rgb(3, 170, 3);
+	font-size: 14px;
+	font-weight: 600;
+	margin-left: 5px;
+}
