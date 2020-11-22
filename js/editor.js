@@ -79,16 +79,6 @@ var delay = (function(){
 	};
 })();
 
-editor.addEventListener('input', e => {
-	dos = e.target.innerHTML;
-	localStorage.setItem('document', dos);
-	console.log(dos);
-	delay(function(){
-		const word =	localStorage.getItem('document');
-		addDoc(word);
-	}, 1000 );
-});
-
 function init(){
 	const token = localStorage.getItem('token');
 	if(!token){
@@ -102,28 +92,35 @@ function init(){
 	}
 }
 
-// window.addEventListener('load', function () {
-// 	const log = document.getElementById('log');
-// 	function updateOnlineStatus() {
-// 		const status = document.getElementById('status');
-// 		if (navigator.onLine === true) {
-// 		// console.log('errrr');
-// 			const word =	localStorage.getItem('document');
-// 			// addDoc(word);
-// 			console.log('rrrrr');
-// 			loading.style.display = 'block';
-// 			status.innerHTML = 'online'.toUpperCase();
-// 			log.innerHTML = ' Status: ' + 'online';
-// 			return (status.className = 'online');
-// 		} else {
-// 			console.log('errrr2');
-// 			status.innerHTML = 'offline'.toUpperCase();
-// 			log.innerHTML = ' Status: ' + 'offline';
-// 			return (status.className = 'offline');
-// 		}
-// 	}
-// 	updateOnlineStatus();
-// 	updateOnlineStatus();
-// 	window.addEventListener('online', updateOnlineStatus);
-// 	window.addEventListener('offline', updateOnlineStatus);
-// });
+window.addEventListener('load', function () {
+	const log = document.getElementById('log');
+	function updateOnlineStatus() {
+		const status = document.getElementById('status');
+		editor.addEventListener('input', e => {
+			dos = e.target.innerHTML;
+			delay(function(){
+				addDoc(dos);
+			}, 1000 );
+			console.log(dos);
+			if (navigator.onLine === true) {
+				const word =	localStorage.getItem('document');
+				addDoc(word);
+				// loading.style.display = 'block';
+				status.innerHTML = 'online'.toUpperCase();
+				log.innerHTML = ' Status: ' + 'online';
+				return (status.className = 'online');
+			} else {
+				console.log('errrr2');
+				localStorage.setItem('document', dos);
+				console.log(dos);
+				status.innerHTML = 'offline'.toUpperCase();
+				log.innerHTML = ' Status: ' + 'offline';
+				return (status.className = 'offline');
+			}
+		});
+	}
+	updateOnlineStatus();
+	updateOnlineStatus();
+	window.addEventListener('online', updateOnlineStatus);
+	window.addEventListener('offline', updateOnlineStatus);
+});
