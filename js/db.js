@@ -4,9 +4,12 @@ const docBook = document.getElementById('documents');
 let holdDoc = [];
 const searchForm = document.getElementById('searchForm');
 const search = document.getElementById('search');
+localStorage.clear();
+
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
+// eslint-disable-next-line no-unused-vars
 function myFunction() {
 	document.getElementById('myDropdown').classList.toggle('show');
 }
@@ -30,7 +33,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		userId = user.uid;
 		getDocuments(userId);
-		// addDoc(userId);
 	} else {
 		console.log(user + '' + 'logged out');
 	}
@@ -46,7 +48,9 @@ function getDocuments(id) {
 	db.get()
 		.then((querySnapshot) => {
 			querySnapshot.forEach(function(doc) {
-				holdDoc.push(doc.data());
+				let dcus = doc.data();
+				dcus.id = doc.id;
+				holdDoc.push(dcus);
 				showDoc();
 			});
 		});
@@ -56,7 +60,6 @@ function getDocuments(id) {
 function showDoc() {
 	docBook.innerHTML = null;
 	for (let i = 0; i < holdDoc.length; i++){
-		console.log(holdDoc[i].name);
 		let date = new Date( holdDoc[i].updated.toMillis());
 		let hour = date.getHours();
 		let sec = date.getSeconds();
@@ -65,31 +68,41 @@ function showDoc() {
 		hour = hour % 12;
 		hour = hour ? hour : 12;
 		var strTime = hour + ':' + minutes + ':' + sec + ' ' + ampm;
+
+		let subString = holdDoc[i].content.replace(/^(.{14}[^\s]*).*/, '$1');
+
 		docBook.innerHTML += `
-      <div class="row" id="${holdDoc[i].id}">
-        <div class="doc-date-info col-5">
-		 			<p><i class="fa fa-book"></i> ${holdDoc[i].name}  <i class="fa fa-users"></i></p>
-				 </div>
-		 		<div class="doc-info-status col-4">
-		 			<p>${holdDoc[i].name}</p>
-		 		</div>
-		 		<div class="doc-open-date col-3">
-						<div class="dropdown">
-						<p> ${strTime} <i class="fa fa-ellipsis-v dropbtn" onclick="myFunction()" ></i></p>
+			<div class="section group">
+				<div class="col span_1_of_3">
+					<p><a id="${holdDoc[i].id}" onclick="getSingleDocId(id)">
+						<i class="fa fa-book"></i> ${subString}  <i class="fa fa-users"></i>
+					</a></p>
+				</div>
+				<div class="col span_1_of_3">
+					<p>${holdDoc[i].name}</p>
+				</div>
+				<div class="col span_1_of_3">
+					<div class="dropdown">
+							<p> ${strTime} <i class="fa fa-ellipsis-v dropbtn" onclick="myFunction()" ></i></p>
 							<div id="myDropdown" class="dropdown-content">
 								<a href="#" target="_blank" >Delete Doc</a>
 								<a href="#">Open in New Tab</a>
 							</div>
 						</div>
-		 		</div>
-      </div>
-    </div>
+				</div>
+			</div>
 			 `;
 	}
 }
 
+// eslint-disable-next-line no-unused-vars
+function getSingleDocId(id){
+	console.log(id);
+	localStorage.setItem('token', id);
+	window.location.href = '../editor.html';
+}
 
-//search document function
+// search document function
 function searchDoc(content) {
 	// eslint-disable-next-line no-undef
 	let db = firebase.firestore()
@@ -103,13 +116,17 @@ function searchDoc(content) {
 				holdDoc = [];
 				holdDoc.push(doc.data());
 				showDoc();
-				console.log(doc.id, ' => ', doc.data());
 			});
 		})
 		.catch(function(error) {
 			console.log('Error getting documents: ', error);
 		});
 }
+
+searchForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	searchDoc(search.value);
+});
 
 // redirect to editor
 newDoc.addEventListener('click', e => {
@@ -118,22 +135,3 @@ newDoc.addEventListener('click', e => {
 });
 
 
-// function addDoc(id) {
-// 	// eslint-disable-next-line no-undef
-// 	firebase
-// 		.firestore()
-// 		.collection('docs')
-// 		.doc(id)
-// 		.collection('documents')
-// 		.add({
-// 			name: 'Bread',
-// 			createdAt: new Date(),
-// 			updated: new Date(),
-// 			content: 'my cv is written on white papaer with a red pen',
-// 		});
-// }
-
-searchForm.addEventListener('submit', (e) => {
-	e.preventDefault();
-	searchDoc(search.value);
-});

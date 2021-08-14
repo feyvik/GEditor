@@ -1,23 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor</title>
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
-  <script src="js/init-firebase.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Editor</title>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+			integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+			crossorigin="anonymous"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/editor.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="edit-icons">
+				<div class="format-section">
+					<a href="javascript:void(0)" onclick="format('bold')"
+						><span class="fa fa-bold fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('italic')"
+						><span class="fa fa-italic fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('insertunorderedlist')"
+						><span class="fa fa-list fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('insertOrderedList')"
+						><span class="fa fa-list-ol fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('justifyLeft')"
+						><span class="fa fa-align-left fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('justifyFull')"
+						><span class="fa fa-align-justify fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('justifyCenter')"
+						><span class="fa fa-align-center fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('justifyRight')"
+						><span class="fa fa-align-right fa-fw"></span
+					></a>
+
+					<a href="javascript:void(0)" onclick="format('underline')"
+						><span class="fa fa-underline fa-fw"></span
+					></a>
+
+					<select id="input-font" class="input" onchange="changeFont (this);">
+						<option value="Arial">Arial</option>
+						<option value="Helvetica">Helvetica</option>
+						<option value="Times New Roman">Times New Roman</option>
+						<option value="Sans serif">Sans serif</option>
+						<option value="Courier New">Courier New</option>
+						<option value="Verdana">Verdana</option>
+						<option value="Georgia">Georgia</option>
+						<option value="Palatino">Palatino</option>
+						<option value="Garamond">Garamond</option>
+						<option value="Comic Sans MS">Comic Sans MS</option>
+						<option value="Arial Black">Arial Black</option>
+						<option value="Tahoma">Tahoma</option>
+						<option value="Comic Sans MS">Comic Sans MS</option>
+						<option value="Roboto">Roboto</option>
+						<option value="Rainway">Rainway</option>
+					</select>
+
+					<select id="fontSize" onclick="changeSize()">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					<span id="status"></span>
+					<span id="log"></span>
+				</div>
+			</div>
+			<div class="edit-content">
+				<div class="editor" contenteditable="true" id="editor"></div>
+				<p class="loading" id="loading">Saving document....</p>
+			</div>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+		<script src="js/init-firebase.js"></script>
+
+		<!-- <script src="js/db.js"></script> -->
+		<script src="js/editor.js"></script>
+	</body>
 </html>
